@@ -14,7 +14,7 @@ public class Generate_Straight_Road : MonoBehaviour {
 	{
 		for (int i=0; i<numberOfRoadSegments; i++)
 		{
-
+			Instantiate(roadSegment, i*roadLength*Vector3.forward, Quaternion.identity);
 		}
 	}
 	
