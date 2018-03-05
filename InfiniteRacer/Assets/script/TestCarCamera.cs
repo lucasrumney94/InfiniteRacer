@@ -23,7 +23,7 @@ public class TestCarCamera : MonoBehaviour {
 		
 		if (Input.GetButtonDown("Left"))
 		{
-			Debug.Log("Left!");
+			//Debug.Log("Left!");
 			if (transform.position.x > - laneWidth)
 			{ 
 				targetPosition -= laneWidth*Vector3.right;
@@ -31,7 +31,7 @@ public class TestCarCamera : MonoBehaviour {
 		}
 		if (Input.GetButtonDown("Right"))
 		{
-			Debug.Log("Right!");
+			//Debug.Log("Right!");
 			if (transform.position.x < laneWidth)
 			{
 				targetPosition += laneWidth*Vector3.right;
