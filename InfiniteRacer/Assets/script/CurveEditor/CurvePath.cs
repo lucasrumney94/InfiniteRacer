@@ -210,7 +210,7 @@ public class CurvePath {
 		{
 			Vector2[] p = GetPointsInSegment(segmentIndex);
 			float controlNetLength = Vector2.Distance(p[0],p[1])+Vector2.Distance(p[1],p[2])+Vector2.Distance(p[2],p[3]);
-			float estimatedCurveLength = Vector2.Distance(p[0],p(3))+controlNetLength/2f;
+			float estimatedCurveLength = Vector2.Distance(p[0], p[3])+controlNetLength/2f;
 			int divisions = Mathf.CeilToInt(estimatedCurveLength * resolution * 10);
 
 			float t = 0;
@@ -233,6 +233,12 @@ public class CurvePath {
 			}
 		}
 		return evenlySpacedPoints.ToArray();
+	}
+
+	public Vector2 CalculatePointOnCurve(int segmentIndex, float t)
+	{
+		Vector2[] p = GetPointsInSegment(segmentIndex);
+		return Bezier.EvaluateCubic(p[0],p[1],p[2],p[3],t);
 	}
 
 	void AutoSetAllAffectedControlPoints(int updatedAnchorIndex)
