@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GenerateWedgeRoad : MonoBehaviour {
 
-	private string left = "left";
-	private string right = "right";
+//	private string left = "left";
+//	private string right = "right";
 	private string up = "up";
 	private string down = "down";
 	private string straight = "straight";

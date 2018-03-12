@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Path : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
+public class PathCreator : MonoBehaviour 
+{
+	[HideInInspector]
+	public CurvePath curvePath;
 	
-	// Update is called once per frame
-	void Update () {
-		
+	public void CreatePath()
+	{
+		curvePath = new CurvePath(transform.position);
+		 
 	}
+
+
 }
