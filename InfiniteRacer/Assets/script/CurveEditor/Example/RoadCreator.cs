@@ -13,6 +13,7 @@ public class RoadCreator : MonoBehaviour
 	public bool autoUpdate;
 	public float tiling  = 1;
 
+	private Vector3[] normals;
 
 	public void UpdateRoad()
 	{
@@ -74,18 +75,22 @@ public class RoadCreator : MonoBehaviour
 
 
 		Mesh mesh = new Mesh();
+		mesh.MarkDynamic();
 		mesh.vertices = verts;
 		mesh.triangles = tris;
 		mesh.uv =  uvs;
 
-		for (int i = 0; i < mesh.normals.Length; i++)
-		{
-			mesh.normals[i] = Vector3.back;
-		}
+ 		//normals = mesh.normals;
+
+        //for (int i = 0; i < normals.Length; i++)
+        //    normals[i] = Vector3.back;
+
+        // assign the array of normals to the mesh
+        //mesh.normals = normals;
+
 		mesh.RecalculateNormals();
 
 		return mesh;
 	}
-
 
 }
