@@ -9,7 +9,7 @@ public class MoveAlongRoad : MonoBehaviour {
 	public float movementSpacing = 0.05f;
 	public float movementResolution = 1.0f;
 
-	public GameObject roadLight;
+	//public GameObject roadLight;
 
 	private int currentSegment = 0;
 	private CurvePath curvePath;
@@ -34,6 +34,7 @@ public class MoveAlongRoad : MonoBehaviour {
 		//	GameObject.Instantiate(roadLight, new Vector3(p.x, p.y, -1.0f), Quaternion.identity);
 			
 		//}
+		StartCoroutine(UpdateEvenlySpacedPoints());
 		
 	}
 
@@ -69,5 +70,14 @@ public class MoveAlongRoad : MonoBehaviour {
 		
 		transform.rotation = Quaternion.Lerp(currentRotation, Quaternion.LookRotation(nextPosition-newPosition, Vector3.back), t);
 		//transform.LookAt(new Vector3(nextPosition.x, nextPosition.y, -height), Vector3.back);
+	}
+
+	IEnumerator UpdateEvenlySpacedPoints()
+	{
+		while (true)
+		{
+			points = curvePath.CalculateEvenlySpacedPoints(movementSpacing, movementResolution);
+			yield return new WaitForSeconds(0.3f);
+		}
 	}
 }
