@@ -69,17 +69,27 @@ public class CreateQuad : MonoBehaviour {
 
 		// 
 		mesh.Clear();
+		//mesh.MarkDynamic();
+		
 		mesh.vertices = verts;
-		mesh.normals = normals;
 		mesh.uv = uvs;
 		mesh.triangles = tris;
+		mesh.normals = normals;
 		
+		mesh.RecalculateNormals();
 
 
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
+		mesh.Clear();
+		//mesh.MarkDynamic();
 		
+		mesh.vertices = verts;
+		mesh.uv = uvs;
+		mesh.triangles = tris;
+		mesh.normals = normals;
 	}
 }
