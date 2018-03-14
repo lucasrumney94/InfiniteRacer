@@ -24,7 +24,7 @@ public class carQuadFlyer : MonoBehaviour {
 		if (i>0)
 		{
 			transform.position = flyer.middleLaneLocations[i]+Vector3.up*height;
-			transform.LookAt(flyer.middleLaneLocations[i+10]);
+			transform.LookAt(flyer.middleLaneLocations[i+20]);
 		}
 	}
 }
