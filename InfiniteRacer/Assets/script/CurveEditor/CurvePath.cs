@@ -241,6 +241,19 @@ public class CurvePath {
 		return Bezier.EvaluateCubic(p[0],p[1],p[2],p[3],t);
 	}
 
+	public Vector2 CalculateTangentOnCurve(int segmentIndex, float t)
+	{
+		Vector2[] pts = GetPointsInSegment(segmentIndex);
+	
+		Vector3 a = Vector3.Lerp(pts[0], pts[1], t);
+		Vector3 b = Vector3.Lerp(pts[1], pts[2], t);
+		Vector3 c = Vector3.Lerp(pts[2], pts[3], t);
+		Vector3 d = Vector3.Lerp(a, b, t);
+		Vector3 e = Vector3.Lerp(b, c, t);
+		return (e-d).normalized;
+	
+	}
+
 	void AutoSetAllAffectedControlPoints(int updatedAnchorIndex)
 	{
 		for (int i = updatedAnchorIndex-3; i <= updatedAnchorIndex+3; i+=3)
