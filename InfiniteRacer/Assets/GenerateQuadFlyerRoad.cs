@@ -18,7 +18,8 @@ public class GenerateQuadFlyerRoad : MonoBehaviour {
 	public List<GameObject> roadQuadPool;
 	public int numberOfQuadsToPool;
 
-	public GameObject RoadLight;
+	public GameObject RoadLightRight;
+	public GameObject RoadLightLeft;
 	public float roadLightPeriod = 5.0f;
 
 	[HideInInspector]
@@ -61,7 +62,7 @@ public class GenerateQuadFlyerRoad : MonoBehaviour {
 		}
 
 		transform.Translate(stepDistance*Vector3.forward, Space.Self);
-		transform.Translate(Vector3.up*0.001f, Space.Self);
+		transform.Translate(Vector3.up*0.01f, Space.Self);
 		Instantiate(flyerRoadQuad, transform.position, transform.rotation);
 		middleLaneLocations.Add(transform.position);
 	}
@@ -101,7 +102,9 @@ public class GenerateQuadFlyerRoad : MonoBehaviour {
 		while (true)
 		{
 
-			Instantiate(RoadLight, transform.position, transform.rotation);
+			Instantiate(RoadLightRight, transform.position, transform.rotation);
+			Instantiate(RoadLightLeft, transform.position-5.0f*transform.right, transform.rotation);
+
 			yield return new WaitForSeconds(roadLightPeriod);
 		}
 	}

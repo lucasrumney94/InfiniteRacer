@@ -128,7 +128,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &156319191
 Transform:
   m_ObjectHideFlags: 0
@@ -164,7 +164,10 @@ MonoBehaviour:
   right: 0
   roadQuadPool: []
   numberOfQuadsToPool: 0
-  RoadLight: {fileID: 1952212670174358, guid: 7e256daad9b88b4488cf577dd2411433, type: 2}
+  RoadLightRight: {fileID: 1952212670174358, guid: 7e256daad9b88b4488cf577dd2411433,
+    type: 2}
+  RoadLightLeft: {fileID: 1952212670174358, guid: c0318327f55589a408c22074805b8898,
+    type: 2}
   roadLightPeriod: 0.4
   middleLaneLocations: []
 --- !u!1 &381755747
@@ -347,7 +350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1046014749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,7 +413,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1261520701}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 60627111fd582f64787ead9583222b07, type: 3}
   m_Name: 
@@ -433,7 +436,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1427136753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,7 +491,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.1
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
