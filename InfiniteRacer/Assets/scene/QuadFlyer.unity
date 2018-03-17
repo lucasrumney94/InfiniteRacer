@@ -121,8 +121,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 156319191}
-  - component: {fileID: 156319192}
   - component: {fileID: 156319193}
+  - component: {fileID: 156319192}
   m_Layer: 0
   m_Name: Flyer
   m_TagString: Flyer
@@ -157,6 +157,8 @@ MonoBehaviour:
   flyerRoadQuad: {fileID: 1280053273707986, guid: 213c752999ffd2d499da0357918fff21,
     type: 2}
   stepDistance: 0.8
+  laneWidth: 4
+  generationPeriod: 0.5
   maxTurnTime: 3
   minTurnTime: 1
   turnSpeed: 0.3
@@ -170,7 +172,11 @@ MonoBehaviour:
   RoadLightLeft: {fileID: 1952212670174358, guid: c0318327f55589a408c22074805b8898,
     type: 2}
   roadLightPeriod: 0.4
-  middleLaneLocations: []
+  buildings:
+  - {fileID: 100000, guid: 09fe70ee8fdb5b14eb00fedbb9499f97, type: 3}
+  - {fileID: 100000, guid: 63723b9a0c61b2445a26180990267fe4, type: 3}
+  buildingPeriod: 0.2
+  objectPooler: {fileID: 0}
 --- !u!114 &156319193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,7 +191,7 @@ MonoBehaviour:
   pools:
   - tag: flyerQuad
     prefab: {fileID: 1280053273707986, guid: 213c752999ffd2d499da0357918fff21, type: 2}
-    size: 5000
+    size: 200
 --- !u!1 &381755747
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,13 +214,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 381755747}
-  m_LocalRotation: {x: 0.20253094, y: 0, z: 0, w: 0.9792759}
+  m_LocalRotation: {x: 0.043619405, y: 0, z: 0, w: 0.9990483}
   m_LocalPosition: {x: 0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1261520702}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 23.37, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 5, y: 0, z: 0}
 --- !u!108 &381755749
 Light:
   m_ObjectHideFlags: 0
@@ -224,10 +230,10 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 0
-  m_Color: {r: 1, g: 0.9764706, b: 0.6627451, a: 1}
-  m_Intensity: 90
-  m_Range: 25
-  m_SpotAngle: 73.7
+  m_Color: {r: 1, g: 0.9219067, b: 0.5955882, a: 1}
+  m_Intensity: 5
+  m_Range: 30
+  m_SpotAngle: 80.2
   m_CookieSize: 10
   m_Shadows:
     m_Type: 1
@@ -391,6 +397,92 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1252363689
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1252363690}
+  - component: {fileID: 1252363693}
+  - component: {fileID: 1252363692}
+  - component: {fileID: 1252363691}
+  m_Layer: 0
+  m_Name: Plane
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1252363690
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1252363689}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -4, z: 0}
+  m_LocalScale: {x: 100, y: 1, z: 100}
+  m_Children: []
+  m_Father: {fileID: 1261520702}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &1252363691
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1252363689}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: eeb1f136359c3da43af040cc7c32a658, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!64 &1252363692
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1252363689}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!33 &1252363693
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1252363689}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1261520701
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,7 +494,7 @@ GameObject:
   - component: {fileID: 1261520703}
   m_Layer: 0
   m_Name: Car
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -414,12 +506,13 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1261520701}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: -10}
+  m_LocalPosition: {x: 0, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2002632642}
   - {fileID: 2139993330}
   - {fileID: 381755748}
+  - {fileID: 1252363690}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -435,8 +528,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
-  height: 1.5
+  height: 1.1
   turnLookAhead: 10
+  currentPointIndex: 0
 --- !u!1 &1427136752
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,7 +600,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 0.875, g: 1, b: 0.98965514, a: 1}
   m_Intensity: 0.1
   m_Range: 10
   m_SpotAngle: 30
@@ -649,13 +743,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2139993329}
-  m_LocalRotation: {x: 0.20253094, y: 0, z: 0, w: 0.9792759}
+  m_LocalRotation: {x: 0.043619405, y: 0, z: 0, w: 0.9990483}
   m_LocalPosition: {x: -0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1261520702}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 23.37, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 5, y: 0, z: 0}
 --- !u!108 &2139993331
 Light:
   m_ObjectHideFlags: 0
@@ -665,10 +759,10 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 0
-  m_Color: {r: 1, g: 0.9764706, b: 0.6627451, a: 1}
-  m_Intensity: 90
-  m_Range: 25
-  m_SpotAngle: 73.7
+  m_Color: {r: 1, g: 0.9219067, b: 0.5955882, a: 1}
+  m_Intensity: 5
+  m_Range: 30
+  m_SpotAngle: 80.2
   m_CookieSize: 10
   m_Shadows:
     m_Type: 1
