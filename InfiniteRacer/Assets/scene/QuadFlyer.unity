@@ -159,9 +159,9 @@ MonoBehaviour:
   stepDistance: 0.8
   laneWidth: 4
   generationPeriod: 0.5
-  maxTurnTime: 3
-  minTurnTime: 1
-  turnSpeed: 0.3
+  maxTurnTime: 2
+  minTurnTime: 0.1
+  turnSpeed: 0.25
   turns: 1
   left: 0
   right: 0
