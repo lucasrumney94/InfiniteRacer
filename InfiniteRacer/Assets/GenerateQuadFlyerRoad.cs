@@ -27,22 +27,25 @@ public class GenerateQuadFlyerRoad : MonoBehaviour {
 
 	private string[] directions = new string[3];
 	private string direction = "";
+
+	private ObjectPooler objectPooler;
 	
 
 
 	// Use this for initialization
 	void Start () 
 	{
+		objectPooler = ObjectPooler.Instance;
 		directions[0] = "straight";
 		directions[1] = "left";
 		directions[2] = "right";
 
-		for (int i = 0; i < numberOfQuadsToPool; i++)
-		{
-			GameObject g = Instantiate(flyerRoadQuad) as GameObject;
-			g.SetActive(false);
-			roadQuadPool.Add(g);
-		}
+		// for (int i = 0; i < numberOfQuadsToPool; i++)
+		// {
+		// 	GameObject g = Instantiate(flyerRoadQuad) as GameObject;
+		// 	g.SetActive(false);
+		// 	roadQuadPool.Add(g);
+		// }
 
 
 		StartCoroutine(SwitchDirection());
@@ -62,8 +65,10 @@ public class GenerateQuadFlyerRoad : MonoBehaviour {
 		}
 
 		transform.Translate(stepDistance*Vector3.forward, Space.Self);
-		transform.Translate(Vector3.up*0.01f, Space.Self);
-		Instantiate(flyerRoadQuad, transform.position, transform.rotation);
+		transform.Translate(Vector3.down*0.005f, Space.Self);
+
+		objectPooler.SpawnFromPool("flyerQuad", transform.position, transform.rotation);
+		//Instantiate(flyerRoadQuad, transform.position, transform.rotation);
 		middleLaneLocations.Add(transform.position);
 	}
 

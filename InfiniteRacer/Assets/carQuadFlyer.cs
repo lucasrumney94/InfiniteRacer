@@ -9,7 +9,12 @@ public class carQuadFlyer : MonoBehaviour {
 
 
 	private GenerateQuadFlyerRoad flyer;
-	public int i = -1000;
+	public int currentPointIndex = 0;
+
+	private Vector3 newPosition;
+	private Vector3 nextPosition;
+	private Quaternion currentRotation;
+	public float t;
 
 	// Use this for initialization
 	void Start () 
@@ -20,11 +25,37 @@ public class carQuadFlyer : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-		i++;
-		if (i>0)
+		//Manual Movement 
+		// i++;
+		// if (i>0)
+		// {
+		// 	transform.position = flyer.middleLaneLocations[i]+Vector3.up*height;
+		// 	transform.LookAt(flyer.middleLaneLocations[i+20]);
+		// }
+
+
+		//Smooth Movement
+		t += speed*Time.deltaTime;
+		if (t>=1)
 		{
-			transform.position = flyer.middleLaneLocations[i]+Vector3.up*height;
-			transform.LookAt(flyer.middleLaneLocations[i+20]);
+			t-=1;
+			currentPointIndex++;
+			//currentRotation = transform.rotation;
 		}
+		//if (currentPointIndex>flyer.middleLaneLocations.Count-2)
+		//{
+		//	currentPointIndex = 0;
+		//}
+
+		if (flyer.middleLaneLocations.Count > 5)
+		{
+			newPosition = flyer.middleLaneLocations[currentPointIndex]+height*Vector3.up;
+			nextPosition = flyer.middleLaneLocations[currentPointIndex+1]+height*Vector3.up;
+
+			transform.position = Vector3.Lerp(newPosition, nextPosition, t);
+		}
+
+		transform.rotation = Quaternion.Lerp(currentRotation, Quaternion.LookRotation(nextPosition-newPosition, Vector3.up), t);
+
 	}
 }
