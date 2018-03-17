@@ -161,7 +161,7 @@ MonoBehaviour:
   generationPeriod: 0.5
   maxTurnTime: 2
   minTurnTime: 0.1
-  turnSpeed: 0.25
+  turnSpeed: 0.2
   turns: 1
   left: 0
   right: 0
@@ -175,7 +175,7 @@ MonoBehaviour:
   buildings:
   - {fileID: 100000, guid: 09fe70ee8fdb5b14eb00fedbb9499f97, type: 3}
   - {fileID: 100000, guid: 63723b9a0c61b2445a26180990267fe4, type: 3}
-  buildingPeriod: 0.2
+  buildingPeriod: 0.5
   objectPooler: {fileID: 0}
 --- !u!114 &156319193
 MonoBehaviour:
@@ -191,7 +191,7 @@ MonoBehaviour:
   pools:
   - tag: flyerQuad
     prefab: {fileID: 1280053273707986, guid: 213c752999ffd2d499da0357918fff21, type: 2}
-    size: 200
+    size: 800
 --- !u!1 &381755747
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,9 +527,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60627111fd582f64787ead9583222b07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
+  speed: 50
   height: 1.1
-  turnLookAhead: 10
+  turnLookAhead: 20
   currentPointIndex: 0
 --- !u!1 &1427136752
 GameObject:
