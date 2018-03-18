@@ -8,35 +8,16 @@ public class rotateMe : MonoBehaviour {
 	public bool randomizeStart;
     public Vector3 rotate;
 
-    private Vector3 originalEuler;
-    private float randomOffset = 1.0f;
-
-    private bool doOnceFlag = true;
-
     void Awake()
     {
-        if (randomizeStart)
-        {
-            randomOffset = Random.Range(0.0f, 360.0f);
-        }
+
 
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (doOnceFlag)
-        {
-			if (WorldSpace)
-			{
-				originalEuler = transform.eulerAngles;
-			}
-			else
-			{
-            	originalEuler = transform.localEulerAngles;
-			}
-            doOnceFlag = false;
-        }
+
 
 		if (WorldSpace)
 		{
