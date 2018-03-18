@@ -4,44 +4,50 @@ using UnityEngine;
 
 public class GenerateQuadFlyerRoad : MonoBehaviour {
 
+	// Road Generation
 	public GameObject flyerRoadQuad;
 	public float stepDistance = 1.0f;
 	public float laneWidth = 2.5f;
-	public float generationPeriod = 0.5f;
+	[HideInInspector]
+	public Dictionary<string, List<Vector3>> LaneLocations = new Dictionary<string,List<Vector3>>();
+	private bool firstGen = true;
 
-	public float maxTurnTime = 8.0f;
-	public float minTurnTime = 2.0f;
+	// Turning
+	public int minTurnSegments = 10;
+	public int maxTurnSegments = 30;
+	private int turnSegmentCounter = 0;
+	private int numberSegmentsInThisTurn;
+
 	public float turnSpeed = 0.8f;
 
+	private string[] directions = new string[3];
+	private string direction = "";
 	public bool turns = true;
 	public bool left = false;
 	public bool right = false;
 
-	public List<GameObject> roadQuadPool;
-	public int numberOfQuadsToPool;
-
+	// Road Lights
 	public GameObject RoadLightRight;
 	public GameObject RoadLightLeft;
 	public float roadLightPeriod = 5.0f;
 
+	//Collectibles
+	public int collectibleMinStringLength = 3;
+	public int collectibleMaxStringLength = 7;
+	public int collectibleStringOccurence = 20;
+
+	// Buildings
 	public List<GameObject> buildings;
 	public float buildingPeriod = 5.0f;
 
-	[HideInInspector]
-	public Dictionary<string, List<Vector3>> LaneLocations = new Dictionary<string,List<Vector3>>();
-
-	private string[] directions = new string[3];
-	private string direction = "";
-
+	// Object Pooler
 	[HideInInspector]
 	public ObjectPooler objectPooler;
 
+	// Player References
 	private carQuadFlyer playerCar;
 	private int playerCarLastIndex;
-	private bool firstGen = true;
 
-
-	// Use this for initialization
 	void Start () 
 	{
 		LaneLocations["Left"] = new List<Vector3>();
@@ -54,40 +60,35 @@ public class GenerateQuadFlyerRoad : MonoBehaviour {
 		directions[1] = "left";
 		directions[2] = "right";
 
-		// for (int i = 0; i < numberOfQuadsToPool; i++)
-		// {
-		// 	GameObject g = Instantiate(flyerRoadQuad) as GameObject;
-		// 	g.SetActive(false);
-		// 	roadQuadPool.Add(g);
-		// }
-
-		StartCoroutine(SwitchDirection());
 		StartCoroutine(SpawnRoadLight());
-		StartCoroutine(SpawnTestBuilding());
+		//StartCoroutine(SpawnTestBuilding());
 		
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		if (left)
-		{
-			transform.Rotate(0,-turnSpeed,0);
-		}
-		if (right)
-		{
-			transform.Rotate(0,turnSpeed,0);
-		}
+
 
 		if (firstGen)
 		{
+			// Move Forward
 			transform.Translate(stepDistance*Vector3.forward, Space.Self);
 			transform.Translate(Vector3.down*0.005f, Space.Self);
 
+			// Turn
+			TurnUpdate(); 
+			if (left)
+			{
+				transform.Rotate(0,-turnSpeed,0);
+			}
+			if (right)
+			{
+				transform.Rotate(0,turnSpeed,0);
+			}
 
 			objectPooler.SpawnFromPool("flyerQuad", transform.position, transform.rotation);
 		
-			//Instantiate(flyerRoadQuad, transform.position, transform.rotation);
 			LaneLocations["Center"].Add(transform.position);
 			LaneLocations["Right"].Add(transform.position+transform.right*laneWidth);
 			LaneLocations["Left"].Add(transform.position-transform.right*laneWidth);
@@ -105,6 +106,17 @@ public class GenerateQuadFlyerRoad : MonoBehaviour {
 				transform.Translate(Vector3.down*0.005f, Space.Self);
 
 
+				TurnUpdate();
+				if (left)
+				{
+					transform.Rotate(0,-turnSpeed,0);
+				}
+				if (right)
+				{
+					transform.Rotate(0,turnSpeed,0);
+				}
+
+
 				objectPooler.SpawnFromPool("flyerQuad", transform.position, transform.rotation);
 			
 				//Instantiate(flyerRoadQuad, transform.position, transform.rotation);
@@ -118,36 +130,38 @@ public class GenerateQuadFlyerRoad : MonoBehaviour {
 		
 	}
 
-
-	IEnumerator SwitchDirection()
+	void TurnUpdate()
 	{
-		while (turns)
+		if (turns)
 		{
-			direction = directions[Random.Range(0,directions.Length)];
-
-			//Debug.Log("Changed Direction to "+direction);
-
-			if (direction.Contains("straight"))
+			turnSegmentCounter++;
+			if (turnSegmentCounter > numberSegmentsInThisTurn)
 			{
-				left = false;
-				right = false;
-			}
-			if (direction.Contains("left"))
-			{
-				left = true;
-				right = false;
-			}
-			if (direction.Contains("right"))
-			{
-				left = false;
-				right = true;
-			}
-			
+				numberSegmentsInThisTurn = Random.Range(minTurnSegments, maxTurnSegments);
+				turnSegmentCounter = 0;
+				direction = directions[Random.Range(0,directions.Length)];
 
-			yield return new WaitForSeconds(Random.Range(minTurnTime, maxTurnTime));
+				//Debug.Log("Changed Direction to " + direction);
 
+				if (direction.Contains("straight"))
+				{
+					left = false;
+					right = false;
+				}
+				if (direction.Contains("left"))
+				{
+					left = true;
+					right = false;
+				}
+				if (direction.Contains("right"))
+				{
+					left = false;
+					right = true;
+				}
+			}
 		}
 	}
+
 
 	IEnumerator SpawnRoadLight()
 	{
