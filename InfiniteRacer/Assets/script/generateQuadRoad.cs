@@ -14,14 +14,14 @@ public class generateQuadRoad : MonoBehaviour {
 	private float generationX = 0.0f; // Monotonically Increasing
 	private CurvePath curvePath;
 	private QuadRoadCreator quadRoadCreator;
-	private GameObject player;
+//	private GameObject player;
 
 	// Use this for initialization
 	void Start () 
 	{
 		curvePath = FindObjectOfType<PathCreator>().curvePath;
 		quadRoadCreator = FindObjectOfType<QuadRoadCreator>();
-		player = GameObject.FindGameObjectWithTag("Player");
+		//player = GameObject.FindGameObjectWithTag("Player");
 		
 		StartCoroutine(GenerateNextPoint());
 	}

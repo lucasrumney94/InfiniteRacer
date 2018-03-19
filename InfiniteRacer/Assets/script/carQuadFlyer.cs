@@ -11,13 +11,16 @@ public class carQuadFlyer : MonoBehaviour {
 
 
 	private GenerateQuadFlyerRoad flyer;
-	//[HideInInspector]
-	public int currentPointIndex = 0;
+	[HideInInspector]
+	public int currentPointIndex;
+	public int numberOfSegmentsBehindPlayer = 5;
+	private int numberOfSegmentsToWaitFor;
+	private ObjectPooler objectPooler;
 
 	private Vector3 newPosition;
 	private Vector3 nextPosition;
 	private Quaternion currentRotation;
-	private float t;
+	private float t = 0;
 
 	//public string[] lanes = new string[3];
 	private string[] lanes = { "Left", "Center", "Right"};
@@ -31,9 +34,12 @@ public class carQuadFlyer : MonoBehaviour {
 		// lanes[2] = "Right";
 		flyer = GameObject.FindGameObjectWithTag("Flyer").GetComponent<GenerateQuadFlyerRoad>();
 
+		objectPooler = ObjectPooler.Instance;
+		numberOfSegmentsToWaitFor = objectPooler.pools[0].size;
+
+		currentPointIndex = 0;
 	}
 	
-	// Update is called once per frame
 	void Update ()
 	{
 		//Manual Movement 
@@ -45,15 +51,8 @@ public class carQuadFlyer : MonoBehaviour {
 		// }
 
 		
-		
-		
+
 		//Smooth Movement
-
-		//if (currentPointIndex>flyer.middleLaneLocations.Count-2)
-		//{
-		//	currentPointIndex = 0;
-		//}
-
 		if (Input.GetButtonDown("Left"))
 		{
 			if (currentLane > 0)
@@ -70,7 +69,7 @@ public class carQuadFlyer : MonoBehaviour {
 		}
 
 
-		if (flyer.LaneLocations[lanes[1]].Count > turnLookAhead+2)
+		if (flyer.LaneLocations[lanes[1]].Count > numberOfSegmentsToWaitFor-numberOfSegmentsBehindPlayer)
 		{
 			t += speed*Time.deltaTime;
 			if (t>=1)
@@ -86,6 +85,8 @@ public class carQuadFlyer : MonoBehaviour {
 			
 			transform.rotation = Quaternion.Lerp(currentRotation, Quaternion.LookRotation(flyer.LaneLocations[lanes[currentLane]][currentPointIndex+turnLookAhead]+height*Vector3.up-newPosition, Vector3.up), t);
 		}
+		
+		
 
 
 	}

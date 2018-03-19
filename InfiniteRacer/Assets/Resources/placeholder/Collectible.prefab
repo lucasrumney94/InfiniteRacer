@@ -20,11 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4213467790129072}
   - component: {fileID: 33830762396590944}
-  - component: {fileID: 65624415022083216}
   - component: {fileID: 23755264570333176}
   m_Layer: 0
   m_Name: Collectible
-  m_TagString: Untagged
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,9 +37,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4526917003815936}
   - component: {fileID: 114079211549981208}
+  - component: {fileID: 114867961514556774}
+  - component: {fileID: 65854888562779552}
   m_Layer: 0
   m_Name: Collectible
-  m_TagString: Untagged
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66,7 +67,7 @@ Transform:
   m_GameObject: {fileID: 1790881876921576}
   m_LocalRotation: {x: 0.1464466, y: 0.35355338, z: 0.35355338, w: 0.8535535}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4213467790129072}
   m_Father: {fileID: 0}
@@ -113,12 +114,12 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1577661550544682}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65624415022083216
+--- !u!65 &65854888562779552
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1577661550544682}
+  m_GameObject: {fileID: 1790881876921576}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
@@ -131,11 +132,22 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1790881876921576}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b3af882994b1984d80b88c061eb0453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   WorldSpace: 1
   randomizeStart: 0
-  rotate: {x: 0, y: 8, z: 0}
+  rotate: {x: 1, y: 2, z: 1}
+--- !u!114 &114867961514556774
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1790881876921576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d988438bc9b52d4c92f90b2d3375e24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

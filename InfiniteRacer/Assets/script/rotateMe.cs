@@ -8,9 +8,12 @@ public class rotateMe : MonoBehaviour {
 	public bool randomizeStart;
     public Vector3 rotate;
 
-    void Awake()
+    void OnEnable()
     {
-
+		if (randomizeStart)
+		{
+			transform.rotation = new Quaternion(Random.Range(0,1),Random.Range(0,1),Random.Range(0,1),Random.Range(0,1));
+		}
 
     }
 
