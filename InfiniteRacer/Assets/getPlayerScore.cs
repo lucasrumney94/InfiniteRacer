@@ -19,6 +19,6 @@ public class getPlayerScore : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		myScoreText.text = playerStats.score.ToString();
+		myScoreText.text = playerStats.score.ToString("0");
 	}
 }

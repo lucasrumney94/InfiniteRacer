@@ -26,8 +26,8 @@ public class DetectCollisions : MonoBehaviour {
 
 		if (other.CompareTag("Collectible"))
 		{
-			playerStats.score++;
-			//objectPooler.ManualDespawn("collectible", other.gameObject);
+			playerStats.collectibleScoreIncrement();
+			Destroy(other.gameObject);
 		}
 	}
 }

@@ -170,10 +170,12 @@ MonoBehaviour:
   RoadLightLeft: {fileID: 1952212670174358, guid: c0318327f55589a408c22074805b8898,
     type: 2}
   roadLightPeriod: 0.4
-  collectibleMinStringLength: 20
+  collectiblePrefab: {fileID: 1790881876921576, guid: 9ddb17ad6d18acb4e8595bae6526e236,
+    type: 2}
+  collectibleMinStringLength: 5
   collectibleMaxStringLength: 25
   collectibleStringOccurence: 60
-  collectibleStringOccurenceRandomness: 1
+  collectibleStringOccurenceRandomness: 10
   collectibleHeight: 0.5
   buildings:
   - {fileID: 100000, guid: 09fe70ee8fdb5b14eb00fedbb9499f97, type: 3}
@@ -352,7 +354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60627111fd582f64787ead9583222b07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 35
+  speed: 55
   height: 0.25
   turnLookAhead: 2
   currentPointIndex: -400
@@ -846,6 +848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
+  collectibleScoreValue: 5
 --- !u!54 &1261520707
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -954,7 +957,7 @@ MonoBehaviour:
     m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 1
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 3
     m_AlignByGeometry: 0

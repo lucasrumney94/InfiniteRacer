@@ -35,6 +35,7 @@ public class GenerateQuadFlyerRoad : MonoBehaviour {
 	public float roadLightPeriod = 5.0f;
 
 	//Collectibles
+	public GameObject collectiblePrefab;
 	public int collectibleMinStringLength = 3;
 	public int collectibleMaxStringLength = 7;
 	public int collectibleStringOccurence = 20;
@@ -205,7 +206,7 @@ public class GenerateQuadFlyerRoad : MonoBehaviour {
 			numberCollectiblesThisString--;
 			Vector3 location = LaneLocations[laneThisString][LaneLocations[laneThisString].Count-1] +Vector3.up*collectibleHeight;
 
-			objectPooler.ManualSpawnFromPool("collectible", location, Quaternion.identity);
+			Instantiate(collectiblePrefab, location, Quaternion.identity);
 
 			if (numberCollectiblesThisString<0)
 			{
@@ -214,7 +215,6 @@ public class GenerateQuadFlyerRoad : MonoBehaviour {
 				segmentsSinceLastCollectible = Random.Range(-collectibleStringOccurenceRandomness, collectibleStringOccurenceRandomness);
 			}
 		}
-
 	}
 
 	IEnumerator SpawnRoadLight()
